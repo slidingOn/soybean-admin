@@ -1,6 +1,6 @@
 <template>
   <div class="h-full">
-    <n-card title="多级菜单 - 二级菜单 是吗" class="h-full shadow-sm rounded-16px"></n-card>
+    <n-card title="多级菜单 - 二级菜单 是的" class="h-full shadow-sm rounded-16px"></n-card>
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-import { mockRequest } from '../request';
+import { mockRequest, request } from '../request';
 
 /**
  * 获取验证码
@@ -14,13 +14,42 @@ export function fetchSmsCode(phone: string) {
  * @param userName - 用户名
  * @param password - 密码
  */
-export function fetchLogin(userName: string, password: string) {
-  return mockRequest.post<ApiAuth.Token>('/login', { userName, password });
+export function fetchLogin(username: string, password: string) {
+  // axios({
+  //               method: 'post',
+  //               url: 'http://localhost:8080/token',
+  //               auth: {
+  //                 username: 'user',
+  //                 password: 'password1'
+  //               }
+  //             }).then(result=>{
+  //               console.log(result);
+  //             });
+
+  return request
+    .post<ApiAuth.Token>(
+      '/token',
+      {},
+      {
+        auth: {
+          username,
+          password
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        }
+      }
+    )
+    .then(result => {
+      // 如果result.data不为空，就将token加上Bearer前缀
+      if (result.data) result.data.token = `Bearer ${result.data?.token}`;
+      return result;
+    });
 }
 
 /** 获取用户信息 */
 export function fetchUserInfo() {
-  return mockRequest.get<ApiAuth.UserInfo>('/getUserInfo');
+  return request.get<ApiAuth.UserInfo>('/getUserInfo');
 }
 
 /**
