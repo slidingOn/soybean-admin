@@ -9,6 +9,16 @@ const multiMenu: AuthRoute.Route = {
       component: 'multi',
       children: [
         {
+          name: 'multi-menu_first_second1',
+          path: '/multi-menu/first/second1',
+          component: 'self',
+          meta: {
+            title: '为什么',
+            requiresAuth: true,
+            icon: 'mdi:menu'
+          }
+        },
+        {
           name: 'multi-menu_first_second',
           path: '/multi-menu/first/second',
           component: 'self',
